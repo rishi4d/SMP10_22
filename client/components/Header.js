@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { GiJamesBondAperture } from "react-icons/gi";
 import { HiOutlineSearch } from "react-icons/hi";
 import { FiHome } from "react-icons/fi";
@@ -8,10 +9,12 @@ import { AiOutlineShop, AiFillMessage, AiFillBell } from "react-icons/ai";
 import { IoGameControllerOutline } from "react-icons/io5";
 import { CgMenuGridO } from "react-icons/cg";
 import { MdOutlineExpandMore } from "react-icons/md";
+import { signOut, useSession } from 'next-auth/react';
 
 const Header = () => {
+  const {data: session} = useSession();
   return (
-    <div className="flex items-center p-2 shadow-md top-0 sticky z-50 h-16">
+    <div className="flex items-center bg-white p-2 shadow-md top-0 sticky z-50 h-16">
       {/*left*/}
       <div className="flex min-w-fit">
         <GiJamesBondAperture style={{ color: "blue" }} size={"2.5rem"} />
@@ -48,9 +51,9 @@ const Header = () => {
 
       {/* right */}
       <div className="flex items-center justify-end min-w-fit space-x-2">
-        <GiJamesBondAperture style={{ color: "blue" }} size={"2.5rem"} />
+        <Image onClick={signOut} src={session?.user.image} height={40} width={40} className="rounded-full cursor-pointer"/>
         <p className="hidden xl:inline-flex font-Poppins font-semibold whitespace-nowrap p-3 max-w-xs">
-          Username
+          {session?.user.name.split(" ")[0]}
         </p>
         <CgMenuGridO
           size={"2.5rem"}

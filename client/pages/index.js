@@ -1,5 +1,6 @@
 import { getSession } from "next-auth/react";
 import Head from "next/head";
+import ConnectionsBar from "../components/ConnectionsBar";
 import Feed from "../components/Feed";
 import Header from "../components/Header";
 import Login from "../components/Login";
@@ -9,7 +10,7 @@ export default function Home({ session }) {
   if (!session) return <Login />;
 
   return (
-    <div>
+    <div className="">
       <Head>
         <title>SMP10_22</title>
         <meta name="description" content="SMP10_22" />
@@ -19,8 +20,11 @@ export default function Home({ session }) {
       <Header />
 
       <main className="flex bg-gray-100">
+        
         <Sidebar />
         <Feed />
+        <ConnectionsBar />
+
       </main>
     </div>
   );
