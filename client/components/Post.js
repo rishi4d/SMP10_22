@@ -7,7 +7,7 @@ import { RiShareForwardLine } from "react-icons/ri";
 
 const Post = () => {
   return (
-    <div className="flex flex-col rounded-lg shadow-md bg-white mt-6 font-medium divide-y">
+    <div className="flex flex-col rounded-lg shadow-md bg-white mt-6 font-medium divide-y no-scrollbar">
       <div className="p-4">
         <div className="flex items-center space-x-2">
           <GiJamesBondAperture style={{ color: "blue" }} size={"2.5rem"} />
