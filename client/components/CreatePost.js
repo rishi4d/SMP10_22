@@ -1,5 +1,6 @@
 import { useSession } from 'next-auth/react';
 import { React, useRef, useState } from 'react';
+import { useDispatch } from "react-redux";
 import Image from 'next/image';
 import { RiVideoAddFill, RiDeleteBin6Line } from "react-icons/ri";
 import { IoMdPhotos } from "react-icons/io";
@@ -8,6 +9,7 @@ import axios from 'axios';
 
 const CreatePost = () => {
   const { data: session } = useSession();
+  const dispatch = useDispatch();
   const inputRef = useRef(null);
   const hiddenFileInput = useRef(null);
   const [imageToPost, setImageToPost] = useState(null);
@@ -45,12 +47,13 @@ const CreatePost = () => {
     axios.post(endpoint, formData, { headers : { Accept : "application/json"}})
     .then((res) => {
       inputRef.current.value = "";
-      removeImage;
+      dispatch(addPost(response.date));
+      removeImage();
     })
     .catch((e) => {
       console.log(e);
     });
-    
+
   }
 
   return (
