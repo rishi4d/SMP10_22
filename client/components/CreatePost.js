@@ -13,7 +13,7 @@ const CreatePost = () => {
   const inputRef = useRef(null);
   const hiddenFileInput = useRef(null);
   const [imageToPost, setImageToPost] = useState(null);
-  const endpoint = "";
+  const service_endpoint = "localhost:8080/rest/v1/post/addPost";
 
   const handleClick = () => {
     hiddenFileInput.current.click();
@@ -35,19 +35,20 @@ const CreatePost = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(inputRef.current.value) return;
+    if(!inputRef.current.value) return;
     const formData = new FormData();
-
+    console.log(e);
     formData.append("file", imageToPost);
     formData.append("post", inputRef.current.value);
     formData.append("name", session?.user.name);
     formData.append("email", session?.user.email);
     formData.append("profilePic", session?.user.image);
+    console.log(formData);
 
-    axios.post(endpoint, formData, { headers : { Accept : "application/json"}})
+    axios.post(service_endpoint, formData, { headers : { Accept : "application/json"}})
     .then((res) => {
       inputRef.current.value = "";
-      dispatch(addPost(response.date));
+      dispatch(addPost(res.data));
       removeImage();
     })
     .catch((e) => {
@@ -63,7 +64,7 @@ const CreatePost = () => {
           <form className='flex flex-1'>
             <input className='rounded-full flex-grow h-12 focus:outline-none font-medium font-Poppins bg-gray-100 px-4' type="text" ref={inputRef} placeholder={`Whats on your mind, ${session?.user.name.split(" ")[0]}?`}></input>
           </form>
-          <button hidden onClick={handleSubmit}></button>
+          <button hidden onClick={handleSubmit}>Submit</button>
         </div>
         {imageToPost && (
           <div onClick={removeImage} className='flex items-center px-4 py-2 space-x-4 cursor-pointer'>

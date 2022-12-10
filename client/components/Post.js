@@ -5,28 +5,30 @@ import { BsHandThumbsUpFill } from "react-icons/bs";
 import { FaCommentAlt, FaShare } from "react-icons/fa";
 import { RiShareForwardLine } from "react-icons/ri";
 
-const Post = () => {
+const Post = ({post}) => {
   return (
-    <div className="flex flex-col rounded-lg shadow-md bg-white mt-6 font-medium divide-y no-scrollbar">
+    <div key={post.div} className="flex flex-col rounded-lg shadow-md bg-white mt-6 font-medium divide-y no-scrollbar">
       <div className="p-4">
         <div className="flex items-center space-x-2">
-          <GiJamesBondAperture style={{ color: "blue" }} size={"2.5rem"} />
+          {/* <GiJamesBondAperture style={{ color: "blue" }} size={"2.5rem"} /> */}
+          <img src={post.profilePic} className="rounded-full w-10 h-10" />
           <div>
-            <p className="font-medium">Rishi Ghosh</p>
-            <p className="text-xs text-gray-500">Date</p>
+            <p className="font-medium">{post.name}</p>
+            <p className="text-xs text-gray-500">{post.timeStamp}</p>
           </div>
         </div>
-        <p className="pt-2">Text</p>
+        <p className="pt-2">{post.post}</p>
       </div>
       {/* Image */}
       <div className="mb-0 pb-0">
-        <div className="relative h-60 md:h-96 bg-white">
+        {post.image &&
+        (<div className="relative h-60 md:h-96 bg-white">
           <Image
-            src="https://cdn.mos.cms.futurecdn.net/owm4oa3hXUG58mka7hPvfP-1200-80.jpg.webp"
+            src="{post.image}"
             layout="fill"
             objectFit="cover"
           />
-        </div>
+        </div>)}
         <div className="flex items-center space-x-1 p-1 m-2 ml-4 pr-2 max-w-max hover:bg-gray-100 text-neutral-600 justify-start rounded-lg cursor-pointer">
           <BsHandThumbsUpFill className="h-3.5  fill-neutral-600" />
           <p className="text-xs sm:text-base">number</p>
