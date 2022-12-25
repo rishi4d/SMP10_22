@@ -9,6 +9,7 @@ export const postSlice = createSlice({
         addPost: (state, action) => {
             console.log(action);
             state.value.push(action.payload);
+            console.log(state);
         },
         addAllPost: (state, action) => {}
     },
@@ -18,7 +19,7 @@ export const action = postSlice.actions;
 
 export const selectPost = (state) => {
     console.log(state);
-    return state.post.value;
+    return state.value;
 };
 
 const store = configureStore({

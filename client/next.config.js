@@ -6,6 +6,7 @@ const nextConfig = {
     domains: [
       "platform-lookaside.fbsbx.com",
       "cdn.mos.cms.futurecdn.net",
+      "localhost"
     ],
   },
 }

@@ -11,9 +11,11 @@ const Post = ({post}) => {
       <div className="p-4">
         <div className="flex items-center space-x-2">
           {/* <GiJamesBondAperture style={{ color: "blue" }} size={"2.5rem"} /> */}
-          <img src={post.profilePic} className="rounded-full w-10 h-10" />
+          <div className="w-10 h-10 rounded-full" style={{ position: "relative", width: "2.5rem", height: "2.5rem"}}>
+            <Image src={post.profilePic} className="rounded-xl" height={40} width={40} objectFit="cover"/>
+          </div>
           <div>
-            <p className="font-medium">{post.name}</p>
+            <p className="font-medium pl-1">{post.name}</p>
             <p className="text-xs text-gray-500">{post.timeStamp}</p>
           </div>
         </div>
