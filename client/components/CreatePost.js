@@ -50,13 +50,10 @@ const CreatePost = () => {
 
     axios
       .post(service_endpoint, formData, {
-        auth: {
-          username: 'root',
-          password: '0000'
-        },
         headers: {
-          Accept: "application/json",
+          "Accept": "application/json",
           "Access-Control-Allow-Origin": "*",
+          "Authorization": 'Basic '+ btoa('rishi4d:password')
         },
       })
       .then((res) => {
