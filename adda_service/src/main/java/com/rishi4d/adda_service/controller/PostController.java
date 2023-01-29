@@ -8,11 +8,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(value = "https://localhost:3000")
 @RestController
 @RequestMapping("/rest/v1/post")
 public class PostController {
-    private PostService postService;
+    private final PostService postService;
 
     public PostController(PostService postService) {
         this.postService = postService;
