@@ -17,6 +17,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
+import java.util.Base64;
 
 @Configuration
 @EnableWebSecurity
@@ -32,7 +33,7 @@ public class AddaSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                //.csrf().disable()
+                .csrf().disable()
                 .cors().configurationSource(corsConfigurationSource())
                 .and()
                 .authorizeRequests()
@@ -73,8 +74,8 @@ public class AddaSecurityConfig extends WebSecurityConfigurerAdapter {
     protected UserDetailsService userDetailsService() {
         UserDetails rishi4d = User.builder()
                 .username("rishi4d")
-                //.password(passwordEncoder.encode("password"))
-                .password(Base64Utils.encodeToString("password".getBytes()))
+                .password(passwordEncoder.encode("password"))
+                //.password(Base64.getEncoder().encodeToString("password".getBytes()))
                 .roles("ADMIN")
                 .build();
 
