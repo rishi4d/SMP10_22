@@ -26,7 +26,7 @@ const Post = ({post}) => {
         {post.image &&
         (<div className="relative h-60 md:h-96 bg-white">
           <Image
-            src="{post.image}"
+            src={post.image}
             layout="fill"
             objectFit="cover"
           />

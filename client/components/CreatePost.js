@@ -46,6 +46,8 @@ const CreatePost = () => {
     formData.append("name", session?.user.name);
     formData.append("email", session?.user.email);
     formData.append("profilePic", session?.user.image);
+    console.log(imageToPost);
+    console.log(session?.user.image);
     console.log(formData);
 
     axios
