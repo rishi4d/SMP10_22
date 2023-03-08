@@ -13,7 +13,7 @@ const CreatePost = () => {
   const dispatch = useDispatch();
   const inputRef = useRef(null);
   const hiddenFileInput = useRef(null);
-  const [imageToPost, setImageToPost] = useState(null);
+  const [imageToPost, setImageToPost] = useState('null11');
   const service_endpoint = "http://localhost:8080/rest/v1/post/addPost";
 
   const handleClick = () => {
@@ -25,6 +25,7 @@ const CreatePost = () => {
     if (e.target.files[0]) {
       reader.readAsDataURL(e.target.files[0]);
       reader.onload = (e) => {
+        console.log(e.target.result);
         setImageToPost(e.target.result);
         console.log(imageToPost);
       };
@@ -36,7 +37,7 @@ const CreatePost = () => {
   };
 
   const handleSubmit = (e) => {
-    console.log("er");
+    console.log(e.target.result);
     e.preventDefault();
     if (!inputRef.current.value) return;
     const formData = new FormData();
