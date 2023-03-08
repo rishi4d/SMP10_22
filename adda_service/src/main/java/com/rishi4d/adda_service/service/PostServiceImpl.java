@@ -1,5 +1,8 @@
 package com.rishi4d.adda_service.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import com.rishi4d.adda_service.controller.PostController;
 import com.rishi4d.adda_service.entity.PostEntity;
 import com.rishi4d.adda_service.model.Post;
 import com.rishi4d.adda_service.repository.PostEntityRepository;
@@ -25,15 +28,22 @@ public class PostServiceImpl implements PostService{
             PostEntity postEntity = new PostEntity();
             BeanUtils.copyProperties(post, postEntity);
 
+            Logger logger = LoggerFactory.getLogger(PostServiceImpl.class);
+
+            logger.debug("Inside PostServiceImpl - addPost(), post -"+post);
+            logger.debug("Inside PostServiceImpl - addPost(), postEntity -"+postEntity);
+
             if(post.getFile() != null && !post.getFile().equalsIgnoreCase(("null")))
                 postEntity.setImage(post.getFile());
             else
                 postEntity.setImage(null);
 
+            logger.debug("Before Saving postEntity -"+postEntity);
+
             postEntity = postEntityRepository.save(postEntity);
             post.setId(postEntity.getId());
-            post.setFile(null);
-            post.setImage(post.getImage());
+            post.setFile(post.getFile());
+            post.setImage(post.getFile());
 
         } catch (Exception e) {
             throw new Exception("Could not save Post : " + e);
