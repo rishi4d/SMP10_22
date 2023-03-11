@@ -9,11 +9,13 @@ import com.rishi4d.adda_service.repository.PostEntityRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class PostServiceImpl implements PostService{
 
     private PostEntityRepository postEntityRepository;
@@ -54,7 +56,7 @@ public class PostServiceImpl implements PostService{
 
     @Override
     public List<Post> getPost() {
-        List<PostEntity> postEntities = postEntityRepository.findAll();
+        List<PostEntity> postEntities = postEntityRepository.findAllByOrderByTimestampDesc();
         List<Post> posts = new ArrayList<>();
         posts = postEntities.stream()
                 .map((postEntity) ->
