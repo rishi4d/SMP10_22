@@ -13,7 +13,7 @@ const CreatePost = () => {
   const dispatch = useDispatch();
   const inputRef = useRef(null);
   const hiddenFileInput = useRef(null);
-  const [imageToPost, setImageToPost] = useState('null11');
+  const [imageToPost, setImageToPost] = useState(null);
   const service_endpoint = "http://localhost:8080/rest/v1/post/addPost";
 
   const handleClick = () => {
